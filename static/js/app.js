@@ -17,10 +17,9 @@ function buildMetadata(sample) {
 
     // Inside a loop, you will need to use d3 to append new
     // tags for each key-value in the filtered metadata.
-		//dataPanel.html('Hello panel world!');
-		let test = JSON.stringify(selectedSample);
-		dataPanel.html(`${test}`);
-
+		for (const key in selectedSample) {
+			dataPanel.append('p').text(`${key.toUpperCase()}: ${selectedSample[key]}`);
+		};
   });
 }
 
