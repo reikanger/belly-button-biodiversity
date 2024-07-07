@@ -73,14 +73,21 @@ function buildCharts(sample) {
 		Plotly.newPlot('bubble', bubbleChartData, bubbleChartLayout);
 
     // For the Bar Chart, map the otu_ids to a list of strings for your yticks
+		// sort and reverse the values
+		console.log(`X Values Before (sample_values): ${sample_values}`);	
+		console.log(`Y Values Before (otu_ids): ${otu_ids}`);	
+
+		displayed_sample_values = sample_values.slice(0, 10);
+		displayed_otu_ids = otu_ids.slice(0, 10);
+
+		console.log(`X Values AFTER (sample_values): ${displayed_sample_values}`);	
+		console.log(`Y Values AFTER (otu_ids): ${displayed_otu_ids}`);	
 
     // Build a Bar Chart
     // Don't forget to slice and reverse the input data appropriately
 		const barChartData = [{
-			x: sample_values.slice(0, 10), 
-			y: otu_ids.slice(0, 10),
-			//x: sample_values,
-			//y: otu_ids,
+			x: displayed_sample_values, 
+			y: displayed_otu_ids,
 			orientation: 'h',
 			hovertext: otu_labels,
 			type: 'bar'
