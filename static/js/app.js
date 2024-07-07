@@ -73,17 +73,18 @@ function buildCharts(sample) {
 		Plotly.newPlot('bubble', bubbleChartData, bubbleChartLayout);
 
     // For the Bar Chart, map the otu_ids to a list of strings for your yticks
-		const barChartData = [{
-			//x: sample_values.slice(0, 10), 
-			//y: otu_labels.slice(0, 10),
-			x: sample_values,
-			y: otu_ids,
-			orientation: 'h',
-			type: 'bar'
-		}];
 
     // Build a Bar Chart
     // Don't forget to slice and reverse the input data appropriately
+		const barChartData = [{
+			x: sample_values.slice(0, 10), 
+			y: otu_ids.slice(0, 10),
+			//x: sample_values,
+			//y: otu_ids,
+			orientation: 'h',
+			hovertext: otu_labels,
+			type: 'bar'
+		}];
 
 		const barChartLayout = {
 			title: 'Top 10 Bacteria Cultures Found',
