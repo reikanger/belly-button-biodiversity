@@ -3,12 +3,10 @@ function buildMetadata(sample) {
   d3.json("https://static.bc-edx.com/data/dl-1-2/m14/lms/starter/samples.json").then((data) => {
 
     // get the metadata field
-		console.log(`buildMetadata function: ${sample}`);
 		metadata = data['metadata'];
 
     // Filter the metadata for the object with the desired sample number
-		let selectedSample = metadata.find(md => md.id == sample); // using weak equals to match string (from names) to int (from metadata)
-		console.log(`(in buildMetadata) selectedSample contents: ${selectedSample}`);
+		const selectedSample = metadata.find(md => md.id == sample); // using weak equals to match string (from names) to int (from metadata)
 
     // Use d3 to select the panel with id of `#sample-metadata`
 		const dataPanel = d3.select('#sample-metadata');
@@ -29,20 +27,15 @@ function buildCharts(sample) {
   d3.json("https://static.bc-edx.com/data/dl-1-2/m14/lms/starter/samples.json").then((data) => {
 
     // Get the samples field
-		console.log(`buildCharts function: ${sample}`);
 		samples = data['samples'];
 
     // Filter the samples for the object with the desired sample number
-		let selectedSample = samples.find(s => s.id == sample); // using weak equals to match string (from names) to int (from metadata)
-		console.log(`(in buildCharts) selectedSample contents: ${selectedSample}`);
+		const selectedSample = samples.find(s => s.id == sample); // using weak equals to match string (from names) to int (from metadata)
 
     // Get the otu_ids, otu_labels, and sample_values
 		const otu_ids = selectedSample['otu_ids'];
 		const otu_labels = selectedSample['otu_labels'];
 		const sample_values = selectedSample['sample_values'];
-		console.log(`(in buildCharts) otu_ids contents: ${otu_ids}`);
-		console.log(`(in buildCharts) otu_labels contents: ${otu_labels}`);
-		console.log(`(in buildCharts) sample_values contents: ${sample_values}`);
 
     // Build a Bubble Chart
 		const bubbleChartData = [
@@ -74,14 +67,8 @@ function buildCharts(sample) {
 
     // For the Bar Chart, map the otu_ids to a list of strings for your yticks
 		// sort and reverse the values
-		console.log(`X Values Before (sample_values): ${sample_values}`);	
-		console.log(`Y Values Before (otu_ids): ${otu_ids}`);	
-
 		displayed_sample_values = sample_values.slice(0, 10).reverse();
 		displayed_otu_ids = otu_ids.map(x => 'OTU ' + x).slice(0, 10).reverse();
-
-		console.log(`X Values AFTER (sample_values): ${displayed_sample_values}`);	
-		console.log(`Y Values AFTER (otu_ids): ${displayed_otu_ids}`);	
 
     // Build a Bar Chart
     // Don't forget to slice and reverse the input data appropriately
@@ -107,12 +94,10 @@ function buildCharts(sample) {
 
 // Function to run on page load
 function init() {
-	console.log('init function:');
   d3.json("https://static.bc-edx.com/data/dl-1-2/m14/lms/starter/samples.json").then((data) => {
 
     // Get the names field
-		let names = data['names'];
-		console.log(`names: ${names}`);
+		const names = data['names'];
 
     // Use d3 to select the dropdown with id of `#selDataset`
 		const dropdown = d3.select('#selDataset');
@@ -126,7 +111,6 @@ function init() {
 
     // Get the first sample from the list
 		firstSample = names[0];
-		console.log(`firstSample: ${firstSample}`);
 
     // Build charts and metadata panel with the first sample
 		buildMetadata(firstSample);
@@ -137,7 +121,6 @@ function init() {
 // Function for event listener
 function optionChanged(newSample) {
   // Build charts and metadata panel each time a new sample is selected
-	console.log(`optionChanged function: ${newSample}`);
 	buildMetadata(newSample);
 	buildCharts(newSample);
 }
