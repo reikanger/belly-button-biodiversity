@@ -6,6 +6,8 @@ function buildMetadata(sample) {
 		console.log(`buildMetadata function: ${sample}`);
 
     // Filter the metadata for the object with the desired sample number
+		let selectedSample = data['metadata'][sample];
+		console.log(`selectedSample contents: ${selectedSample}`);
 
     // Use d3 to select the panel with id of `#sample-metadata`
 		const dataPanel = d3.select('#sample-metadata');
@@ -16,6 +18,7 @@ function buildMetadata(sample) {
     // Inside a loop, you will need to use d3 to append new
     // tags for each key-value in the filtered metadata.
 		dataPanel.html('Hello panel world!');
+		//dataPanel.append(`id: ${sample}`);
 
   });
 }
@@ -72,11 +75,11 @@ function init() {
 		};
 
     // Get the first sample from the list
-		let firstSample = data['metadata'][0];
+		firstSample = names[0];
+		console.log(`firstSample: ${firstSample}`);
 
     // Build charts and metadata panel with the first sample
 		buildMetadata(firstSample);
-
   });
 }
 
@@ -84,7 +87,8 @@ function init() {
 function optionChanged(newSample) {
   // Build charts and metadata panel each time a new sample is selected
 	console.log(`optionChanged function: ${newSample}`);
-
+	buildMetadata(newSample);
+	buildCharts(newSample);
 }
 
 // Initialize the dashboard
