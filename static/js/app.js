@@ -7,15 +7,15 @@ function buildMetadata(sample) {
 
     // Filter the metadata for the object with the desired sample number
 
-
     // Use d3 to select the panel with id of `#sample-metadata`
-
+		const dataPanel = d3.select('#sample-metadata');
 
     // Use `.html("") to clear any existing metadata
-
+		dataPanel.html('');
 
     // Inside a loop, you will need to use d3 to append new
     // tags for each key-value in the filtered metadata.
+		dataPanel.html('Hello panel world!');
 
   });
 }
@@ -75,10 +75,7 @@ function init() {
 		let firstSample = data['metadata'][0];
 
     // Build charts and metadata panel with the first sample
-		console.log(`first sample: ${JSON.stringify(firstSample)}`);
-		const dataPanel = d3.select('#sample-metadata');
-		dataPanel.append(buildMetadata(firstSample));
-
+		buildMetadata(firstSample);
 
   });
 }
