@@ -6,7 +6,7 @@ function buildMetadata(sample) {
 		console.log(`buildMetadata function: ${sample}`);
 
     // Filter the metadata for the object with the desired sample number
-		let selectedSample = data['metadata'][sample];
+		let selectedSample = data['metadata'].find(d => d.id == sample); // using weak equals to match string (from names) to int (from metadata)
 		console.log(`selectedSample contents: ${selectedSample}`);
 
     // Use d3 to select the panel with id of `#sample-metadata`
@@ -17,8 +17,9 @@ function buildMetadata(sample) {
 
     // Inside a loop, you will need to use d3 to append new
     // tags for each key-value in the filtered metadata.
-		dataPanel.html('Hello panel world!');
-		//dataPanel.append(`id: ${sample}`);
+		//dataPanel.html('Hello panel world!');
+		let test = JSON.stringify(selectedSample);
+		dataPanel.html(`${test}`);
 
   });
 }
