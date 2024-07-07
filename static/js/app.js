@@ -77,8 +77,8 @@ function buildCharts(sample) {
 		console.log(`X Values Before (sample_values): ${sample_values}`);	
 		console.log(`Y Values Before (otu_ids): ${otu_ids}`);	
 
-		displayed_sample_values = sample_values.slice(0, 10);
-		displayed_otu_ids = otu_ids.slice(0, 10);
+		displayed_sample_values = sample_values.slice(0, 10).reverse();
+		displayed_otu_ids = otu_ids.map(x => 'OTU ' + x).slice(0, 10).reverse();
 
 		console.log(`X Values AFTER (sample_values): ${displayed_sample_values}`);	
 		console.log(`Y Values AFTER (otu_ids): ${displayed_otu_ids}`);	
