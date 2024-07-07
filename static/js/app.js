@@ -45,10 +45,31 @@ function buildCharts(sample) {
 		console.log(`(in buildCharts) sample_values contents: ${sample_values}`);
 
     // Build a Bubble Chart
-
+		const bubbleChartData = [
+			{
+				x: otu_ids,
+				y: sample_values,
+				mode: 'markers',
+				marker: {
+					size: sample_values,
+					color: otu_ids,
+					text: otu_labels
+				}
+			}
+		];
+		const bubbleChartLayout = {
+			title: 'Bacteria Cultures Per Sample',
+			showlegend: false,
+			xaxis: {
+				title: 'OTU ID'
+			},
+			yaxis: {
+				title: 'Number of Bacteria'
+			}
+		};
 
     // Render the Bubble Chart
-
+		Plotly.newPlot('bubble', bubbleChartData, bubbleChartLayout);
 
     // For the Bar Chart, map the otu_ids to a list of strings for your yticks
 
