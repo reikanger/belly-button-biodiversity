@@ -3,7 +3,7 @@ function buildMetadata(sample) {
   d3.json("https://static.bc-edx.com/data/dl-1-2/m14/lms/starter/samples.json").then((data) => {
 
     // get the metadata field
-		console.log(`buildMetadata function: ${data}`);
+		console.log(`buildMetadata function: ${sample}`);
 
     // Filter the metadata for the object with the desired sample number
 
@@ -25,7 +25,7 @@ function buildCharts(sample) {
   d3.json("https://static.bc-edx.com/data/dl-1-2/m14/lms/starter/samples.json").then((data) => {
 
     // Get the samples field
-		console.log(`buildCharts function: ${data}`);
+		console.log(`buildCharts function: ${sample}`);
 
 
     // Filter the samples for the object with the desired sample number
@@ -72,9 +72,13 @@ function init() {
 		};
 
     // Get the first sample from the list
-
+		let firstSample = data['metadata'][0];
 
     // Build charts and metadata panel with the first sample
+		console.log(`first sample: ${JSON.stringify(firstSample)}`);
+		const dataPanel = d3.select('#sample-metadata');
+		dataPanel.append(buildMetadata(firstSample));
+
 
   });
 }
@@ -82,7 +86,7 @@ function init() {
 // Function for event listener
 function optionChanged(newSample) {
   // Build charts and metadata panel each time a new sample is selected
-	console.log(`optionChanged function: ${data}`);
+	console.log(`optionChanged function: ${newSample}`);
 
 }
 
