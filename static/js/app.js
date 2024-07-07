@@ -4,10 +4,11 @@ function buildMetadata(sample) {
 
     // get the metadata field
 		console.log(`buildMetadata function: ${sample}`);
+		metadata = data['metadata'];
 
     // Filter the metadata for the object with the desired sample number
-		let selectedSample = data['metadata'].find(d => d.id == sample); // using weak equals to match string (from names) to int (from metadata)
-		console.log(`selectedSample contents: ${selectedSample}`);
+		let selectedSample = metadata.find(md => md.id == sample); // using weak equals to match string (from names) to int (from metadata)
+		console.log(`(in buildMetadata) selectedSample contents: ${selectedSample}`);
 
     // Use d3 to select the panel with id of `#sample-metadata`
 		const dataPanel = d3.select('#sample-metadata');
@@ -29,13 +30,19 @@ function buildCharts(sample) {
 
     // Get the samples field
 		console.log(`buildCharts function: ${sample}`);
-
+		samples = data['samples'];
 
     // Filter the samples for the object with the desired sample number
-
+		let selectedSample = samples.find(s => s.id == sample); // using weak equals to match string (from names) to int (from metadata)
+		console.log(`(in buildCharts) selectedSample contents: ${selectedSample}`);
 
     // Get the otu_ids, otu_labels, and sample_values
-
+		const otu_ids = selectedSample['otu_ids'];
+		const otu_labels = selectedSample['otu_labels'];
+		const sample_values = selectedSample['sample_values'];
+		console.log(`(in buildCharts) otu_ids contents: ${otu_ids}`);
+		console.log(`(in buildCharts) otu_labels contents: ${otu_labels}`);
+		console.log(`(in buildCharts) sample_values contents: ${sample_values}`);
 
     // Build a Bubble Chart
 
@@ -80,6 +87,7 @@ function init() {
 
     // Build charts and metadata panel with the first sample
 		buildMetadata(firstSample);
+		buildCharts(firstSample);
   });
 }
 
