@@ -1,4 +1,4 @@
-# Module 14 Challenge
+# Belly Button Biodiversity
 
 ## Background
 This repository contains the code to run an interactive dashboard that explores a Belly Button Biodiversity dataset, which catalogs the microbes that colonize human navels.
